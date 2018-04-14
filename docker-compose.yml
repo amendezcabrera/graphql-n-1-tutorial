@@ -1,0 +1,52 @@
+version: "2"
+
+networks:
+  main_traffic:
+
+services:
+  web:
+    build: .
+    ports:
+      - "81:81"
+      - "9229:9229"
+    networks:
+      main_traffic:
+        aliases:
+          - webserver
+    depends_on:
+      - db
+    volumes:
+      - ./app:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    container_name: api
+  db:
+    image: postgres:9.6
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    environment:
+      - DEBUG=false
+    networks:
+      main_traffic:
+        aliases:
+          - pgdb
+    container_name: db
+  pgadmin:
+    # default user: pgadmin4@pgadmin.org
+    # default password: admin
+    image: fenglc/pgadmin4:2.1
+    ports:
+      - "5050:5050"
+    networks:
+      main_traffic:
+        aliases:
+          - pgadmin
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin4/data
+    container_name: db_admin
+
+volumes:
+  node_modules:
+  pgadmin_data:
+  postgresql:

@@ -1,0 +1,33 @@
+{
+  "name": "graphql_api",
+  "version": "1.0.0",
+  "description": "GraphQL API",
+  "author": "Alberto Méndez",
+  "license": "ISC",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "nodemon -e js,json,graphqls --inspect=0.0.0.0:9229 -L ./bin/www",
+    "test": "NODE_ENV=test nyc --reporter=html mocha --timeout 0 --recursive --exit"
+  },
+  "dependencies": {
+    "apollo-server-express": "1.3.2",
+    "body-parser": "^1.18.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "express-graphql": "0.6.12",
+    "graphql": "0.13.1",
+    "graphql-tools": "2.21.0",
+    "jade": "^1.11.0",
+    "morgan": "^1.8.2",
+    "path": "0.12.7",
+    "pg": "^6.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.22.6",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "nodemon": "^1.12.1"
+  }
+}
