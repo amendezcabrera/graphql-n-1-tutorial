@@ -1,71 +1,3 @@
-# Hour
-type Hour {
-    # ID
-    id: ID!
-    # Name
-    name: String!
-    # Price
-    price: Float!
-    # Active
-    active: Boolean!
-}
-
-# Job hour input type
-input HourInput{
-    # Job ID
-    jobId: ID!
-    # Name
-    name: String!
-    # Price
-    price: Float!
-}
-
-# Job
-type Job {
-    # ID
-    id: ID!
-    # UID
-    uid: String!
-    # Name
-    name: String!
-    # Address
-    address: String
-    # Phone
-    phone: String
-    # Photo
-    photo: String
-    # Active
-    active: Boolean
-}
-
-# Job input type
-input JobInput {
-    # Name
-    name: String!
-    # Address
-    address: String
-    # Phone
-    phone: String
-    # Photo
-    photo: String
-}
-
-# Job input type
-input JobUpdateInput {
-    # ID
-    id: ID
-    # UID
-    uid: String
-    # Name
-    name: String!
-    # Address
-    address: String
-    # Phone
-    phone: String
-    # Photo
-    photo: String
-}
-
 # User
 type User {
     # ID
@@ -74,66 +6,30 @@ type User {
     username: String!
     # Name
     name: String!
-    # Surname
-    surname: String!
-    # Roles
-    roles: [String]
     # User email
     email: String!
-    # User last login
-    lastLogin: Int
-    # Client locale
-    locale: String!
-    # Is user active?
-    active: Boolean!
-    # Token
-    token: String
     # User creation date
     createdAt: Int!
     # User modification date
     updatedAt: Int!
+    # User profile
+    userProfile: UserProfile
 }
 
-input UserAuthInput {
-    # Username
-    username: String!
-    # Password
-    password: String!
-}
-
-input UserInput {
+# User Profile
+type UserProfile {
+    # ID
+    id: ID!
     # Name
     name: String!
-    # Surname
-    surname: String!
-    # Username
-    username: String!
-    # User email
-    email: String!
-    # Password
-    password: String!
-    # Client locale
-    locale: String!
+    # User profile creation date
+    createdAt: Int!
+    # User profile modification date
+    updatedAt: Int!
 }
 
 # Consulta
 type Query {
-    # Get user
+    # Get users
     users(id: ID): [User]
-    # Lock job
-    updateJobLock(id: ID, active: Boolean): Job!
-}
-
-# Modificador
-type Mutation{
-    # Creates a new job
-    createJob(job: JobInput!): Job!
-    # Creates a new job hour
-    createHour(hour: HourInput!): Hour!
-    # Modifies a job
-    updateJob(job: JobUpdateInput!): Job!
-    # Sign up
-    signUp(user: UserInput!): User
-    # User login
-    signIn(user: UserAuthInput!): User
 }
