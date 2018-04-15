@@ -8,6 +8,14 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
+    userProfileId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'user_profile',
+        key: 'id'
+      }
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false
@@ -20,30 +28,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    surname: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    salt: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    lastLogin: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    locale: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    active: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
     },
     createdAt: {
       type: DataTypes.DATE,
