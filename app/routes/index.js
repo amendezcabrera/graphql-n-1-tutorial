@@ -11,6 +11,7 @@ const {makeExecutableSchema} = require('graphql-tools');
 const schemaFile = path.join(__dirname, '../server/graphql/schema.graphqls');
 const typeDefs = fs.readFileSync(schemaFile, 'utf8');
 const schema = makeExecutableSchema({typeDefs, resolvers});
+const loaders = require('../server/loaders');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -22,7 +23,7 @@ router.use(
     graphqlExpress(req => {
         return {
             schema: schema,
-            context: req
+            context: {req, loaders}
         }
     })
 );

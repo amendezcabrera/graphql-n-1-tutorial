@@ -7,8 +7,9 @@ const resolvers = {
         },
 
         User: {
-            userProfile(userData) {
-                return ctrlUserProfile.getById(userData.userProfileId);
+            userProfile(userData, _args, {loaders}) {
+                const userProfileId = userData.userProfileId > 0 ? userData.userProfileId : 0;
+                return loaders.userProfileLoader.load(userProfileId);
             }
         }
     }

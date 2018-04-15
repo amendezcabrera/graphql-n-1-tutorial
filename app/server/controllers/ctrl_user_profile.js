@@ -1,7 +1,13 @@
 const db = require("../models/index");
+const _ = require('lodash');
 
-exports.getById = function (id) {
-    return db.user_profile.findById(id).then((userProfile) => {
-        return userProfile;
+exports.get = (ids) => {
+    return db.user_profile.findAll({
+        where: {
+            id: ids
+        }
+    }).then((userProfiles) => {
+        const userProfileById = _.keyBy(userProfiles, "id");
+        return ids.map(userProfileId => userProfileById[userProfileId]);
     });
 };
